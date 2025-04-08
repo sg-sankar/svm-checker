@@ -1,8 +1,16 @@
-import spacy
+
 from transformers import pipeline
 import streamlit as st
 from spacy import displacy
 import streamlit.components.v1 as components
+import spacy
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
+
 
 
 # Load spaCy model for sentence parsing
